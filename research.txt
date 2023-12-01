@@ -1,0 +1,90 @@
+Code Generator website
+---------------------
+
+Enter what type of program do you want?
+e.g: hello world, sorting, date display, calendar, random numbers, password generator....
+
+Select the programming language you want to download the code - 
+C, C++, c#, Java, python, js All in zip
+
+------------------
+
+when couldn't find the entered type of program required by the user -> a mail to be sent to the developer to make a note of it and to add it in future
+
+------------------------
+
+translation of code by user frm 1 to another program
+sequence search, 
+more need - search imp,
+google web toolkit
+kotiln to js
+version control
+security - data protection, email
+
+---------
+
+3 or 4 websites similar
++/- of websites
+kind of hosting
+open source - license issue - mit
+
+--------------
+
+hakerrank 
+hakerearth
+codechef
+
+------------
+
+attached an example for requirements for a web application.
+
+Some websites that seem interesting:
+https://www.geeksforgeeks.org/
+https://visualgo.net/en
+https://en.wikipedia.org/wiki/List_of_algorithms
+
+--------------------------------------------------------
+
+compile and run is another functionality which can be added later
+
+--------------------------------------------------------
+
+design database system with tables and parameters
+
+possible security issues
+validations
+test cases for improvement
+different method of approach for the same program
+open source license?
+
+start developing website on python - to start with basic fields and be ready with demo website
+try adding at least 5 sample programs in all PL (Java, C, C++, C#, Python, JS) 
+create new file and 
+design code to display the code sample program added manually
+----------------------------------------------------------
+file system ---> 
+
+create different folders with the 'Programming Language' as the folder names
+Folder  --   files inside folder
+Java	-- 	.java files
+C		--	.c files
+Cplus	--	.cpp files
+CSharp	--	.cs files
+python	--	.py files
+JS		--	.js files
+----------------------------------------------------------
+initially any 5 sample programs to be added manually-
+search and sorting technique - 
+
+Linear Search 
+Binary Search 
+Bubble Sort 
+Selection Sort 
+Insertion Sort
+
+trial of website on above programs with PL's JAVA, C, C++, Python 
+--------------------------------------------------------
+python -m streamlit run <filename.py>
+py -m streamlit run hello.py
+---------------------------------------------------------
+c:\program files\python39\python.exe -m pip install --upgrade pip

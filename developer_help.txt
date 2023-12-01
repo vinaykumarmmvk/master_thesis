@@ -1,0 +1,267 @@
+python -m streamlit run <filename.py>
+py -m streamlit run hello.py
+----------------------------------------
+N = 10
+with open("C:\demofile.txt", "r") as file:  # the a opens it in append mode
+    for i in range():
+        line = next(file).strip()
+        st.write(line)
+-------------------------------------------------------------------------------------------
+f1 = open("C:\demofile.txt")
+
+while True:
+    line = f1.readline()
+    st.write(line)
+    if ("" == line):
+        st.write("file finished")
+        break;
+--------------------------------------------------------------------------------------------
+# streamlit_app.py
+
+import streamlit as st
+import mysql.connector
+
+# Initialize connection.
+# Uses st.cache_resource to only run once.
+@st.cache_resource
+def init_connection():
+    return mysql.connector.connect(**st.secrets["mysql"])
+
+conn = init_connection()
+
+# Perform query.
+# Uses st.cache_data to only rerun when the query changes or after 10 min.
+@st.cache_data(ttl=600)
+def run_query(query):
+    with conn.cursor() as cur:
+        cur.execute(query)
+        return cur.fetchall()
+
+rows = run_query("SELECT * from mytable;")
+
+# Print results.
+for row in rows:
+    st.write(f"{row[0]} has a :{row[1]}:")
+	
+-----------------------------------------------------------------------------------------------
+import mysql.connector
+import streamlit as st
+
+mydb = mysql.connector.connect(
+	host = "localhost",
+	user = "root",
+	password = "1234",
+	database = "mysql"
+)
+
+mycursor = mydb.cursor()
+------------------------------------------------------------------------------------------------
+import streamlit as st
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame(
+   np.random.randn(10, 5),
+   columns=('col %d' % i for i in range(5)))
+
+st.table(df)
+-------------------------------------------------------------------------------------------------
+import pandas as pd
+import streamlit as st
+
+# Cache the dataframe so it's only loaded once
+@st.cache_data
+def load_data():
+    return pd.DataFrame(
+        {
+            "first column": [1, 2, 3, 4],
+            "second column": [10, 20, 30, 40],
+        }
+    )
+
+# Boolean to resize the dataframe, stored as a session state variable
+st.checkbox("Use container width", value=False, key="use_container_width")
+
+df = load_data()
+
+# Display the dataframe and allow the user to stretch the dataframe
+# across the full width of the container, based on the checkbox value
+st.dataframe(df, use_container_width=st.session_state.use_container_width)
+--------------------------------------------------------------------------------------------------
+import streamlit as st 
+import sqlite3
+import pandas as pd
+from streamlit_option_menu import option_menu
+from st_aggrid import AgGrid,GridUpdateMode
+from st_aggrid.grid_options_builder import GridOptionsBuilder
+
+
+conn = sqlite3.connect('stocks.db')
+cur = conn.cursor()
+
+def create_table():
+    cur.execute('CREATE TABLE IF NOT EXISTS product(id integer PRIMARY KEY, name TEXT, count integer)')
+
+def add(name, count):
+    cur.execute('INSERT INTO product(name, count) VALUES (?,?)', (name, count))
+    conn.commit()
+
+def update(id, count):
+    cur.execute('UPDATE product SET count=? WHERE id=?', (count, id))
+    conn.commit()
+
+
+create_table()
+
+# Run once to add data to table.
+# add('cpu', 5)
+# add('psu', 5)
+# add('mother board', 8)
+# add('gpu', 10)
+
+st.write('##### Intital contents of db')
+df = pd.read_sql('SELECT * FROM product', con=conn)
+st.write(df)
+
+gd = GridOptionsBuilder.from_dataframe(df)
+gd.configure_pagination(enabled=True)
+gd.configure_default_column(editable=True, groupable=True)
+sel_mode = st.radio('Selection Type', options=['single', 'multiple'])
+gd.configure_selection(selection_mode=sel_mode, use_checkbox=True)
+gridoptions = gd.build()
+grid_table = AgGrid(df, gridOptions=gridoptions,
+                    update_mode=GridUpdateMode.SELECTION_CHANGED | GridUpdateMode.VALUE_CHANGED,
+                    height=500,
+                    allow_unsafe_jscode=True,
+                    # enable_enterprise_modules = True,
+                    theme='fresh')
+
+sel_row = grid_table["selected_rows"]
+st.subheader("Output")
+st.write(sel_row)
+
+df_selected = pd.DataFrame(sel_row)
+
+if st.button('Update db', key=1):
+    for i, r in df_selected.iterrows():
+        id = r['id']
+        cnt = r['count']
+        update(id, cnt)
+
+    st.write('##### Updated db')
+    df_update = pd.read_sql('SELECT * FROM product', con=conn)
+    st.write(df_update)
+
+cur.close()
+conn.close()
+---------------------------------------------------------------------------------------
+to check the type of a variable --> type(var)
+---------------------------------------------------------------------------------------
+openai.api_key = "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"
+---------------------------------------------------------------------------------------
+mysql_statement = """SELECT * FROM table WHERE field LIKE '%part%'; """
+df = pd.read_sql( text(mysql_statement), con=conn)
+-----
+val = 'Search'
+mysql_statement = """SELECT * FROM fileDetails WHERE file_name LIKE %s; """
+df = pd.read_sql(mysql_statement, con=mydb, params=('%' + val + '%',))
+-----
+mysql_statement = """SELECT * FROM table WHERE field LIKE %s; """
+df = pd.read_sql(mysql_statement, con=conn, params=("%part%",))
+-----
+import streamlit as st
+
+# Using object notation
+add_selectbox = st.sidebar.selectbox(
+    "How would you like to be contacted?",
+    ("Email", "Home phone", "Mobile phone")
+)
+
+# Using "with" notation
+with st.sidebar:
+    add_radio = st.radio(
+        "Choose a shipping method",
+        ("Standard (5-15 days)", "Express (2-5 days)")
+    )
+-------------
+The only elements that aren't supported using object notation are st.echo and st.spinner. To use these elements, you must use with notation.
+-----------
+import os 
+os.system('python filename.py')
+----------
+def say_hello():
+   print( 'Hello, world!' )
+-----   
+import mymodule
+mymodule.say_hello()
+------------
+#mysql_statement = '''SELECT * FROM fileDetails WHERE file_id IN ({})'''.format(','.join(['?'] * len(options)))
+
+#queryString = 'SELECT * FROM fileDetails WHERE file_name in '+options
+
+#df = pd.read_sql(mysql_statement, con=mydb, params = options )
+
+foostring = ",".join( map(str, options) )
+
+mycursor = mydb.cursor()
+
+mycursor.execute("SELECT * FROM fileDetails WHERE file_id in ('%s')" % (foostring))
+
+myresult = mycursor.fetchall()
+
+df = pd.read_sql("SELECT * FROM fileDetails WHERE file_name in ('%s')" % (foostring), mydb)
+---------------------------------
+for multiselect:
+
+st.write(len(data.selected_rows))
+        for i in range(len(data.selected_rows)):
+            st.write(data.selected_rows[i]["file_name"])
+        st.write(r.url)
+
+---------------------------------
+pip install streamlit-option-menu
+----------------------------------
+pip install streamlit-modal
+-----------------------------------
+from streamlit_modal import Modal
+
+import streamlit.components.v1 as components
+
+modal = Modal(key="Demo Key",title="test")
+open_modal = st.button("Open")
+if open_modal:
+    modal.open()
+
+if modal.is_open():
+    with modal.container():
+        st.write("Text goes here")
+
+        html_string = '''
+        <h1>HTML string in RED</h1>
+
+        <script language="javascript">
+          document.querySelector("h1").style.color = "red";
+        </script>
+        '''
+        components.html(html_string)
+
+        st.write("Some fancy text")
+        value = st.checkbox("Check me")
+        st.write(f"Checkbox checked: {value}")
+		
+----------------------------------------------------------------------------
+
+#Read yaml file
+with open(f'config.yaml','r') as f:
+    data = yaml.safe_load_all(f)
+    loaded_data = list(data)
+    #st.write(loaded_data)
+    st.write(loaded_data[0]['credentials']['usernames']['jsmith']['password'])
+	
+	https://earthly.dev/blog/yaml-in-python/
+	https://pynative.com/python-yaml/#h-loading-a-yaml-document-safely-using-safe_load
+------------------------------------------------------
+SET FOREIGN_KEY_CHECKS = 0;
+ALTER TABLE users MODIFY user_id INTEGER NOT NULL AUTO_INCREMENT;
+SET FOREIGN_KEY_CHECKS = 1;
+-----------------------------------------------------------
