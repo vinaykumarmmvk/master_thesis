@@ -13,9 +13,8 @@ from concurrent.futures import ThreadPoolExecutor #useful for thread handling
 
 navbar("openai_search")#pass the header function with search as page name
 
-#openai.api_key = "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"
 #openai key generated in openai website
-openai.api_key = "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"
+openai.api_key = "xxxx"
 
 mydb = dbinit() #intialization of db parameters
 
