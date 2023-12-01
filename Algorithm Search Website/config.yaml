@@ -1,0 +1,85 @@
+cookie:
+  expiry_days: 30
+  key: demoAuth
+  name: authCookie
+credentials:
+  usernames:
+    asdf:
+      email: asdg@asdf
+      name: asdf
+      password: $2b$12$u700J5gJRZr9ExOQyb4R2ONqVXzZp57Nkbq7uiIjqiDpAvqtzEyrS
+    asdf1:
+      email: asdg@asdf
+      name: asdf
+      password: $2b$12$TndFQYZl.9CqTKb/UCMC0u/0B1Z89ah9hNcSPbDYeLoEpI06OIZVu
+    asdf12:
+      email: asdg@asdf
+      name: asdf
+      password: $2b$12$rfeF4cHuMi6nrx1ECKKCce2jahSOntqGRFWVIQNJJUxoVW/j//m.e
+    asdffde:
+      email: asdfds@asdfa.com
+      name: asdfeff
+      password: $2b$12$Wv7k5XzSl7J90T1RwG0fy.j/e7.WwdPM4RgIzovHbJDfCplrTFAKa
+    devtest:
+      email: mmvinaykumar.mm@gmail.com
+      name: Developer
+      password: $2b$12$wjFCeVEFvl3xxnAZ9QwVAuQlEx34i0IRjzr52aAWuVRqWXh8aTIHa
+    integtest:
+      email: mmvinaykumar.mm@gmail.com
+      name: vinay kumar
+      password: $2b$12$2O2pkbCGCZBqHDiFutiK5ON7VHS0g.edHBIqS/2qGP8yKHXpaQQEG
+    jsmith:
+      email: mmvinaykumar.mmvk@gmail.com
+      name: John Smith
+      password: $2b$12$u1fMBTK1NDv19QzfuCi2YeW5LAOjlLwkl8Z5bJ3.zOZc.J9MnkypO
+    newuser:
+      email: newuser@newuser.com
+      name: newuser
+      password: $2b$12$SJHUSHVmiMbhNxvOrF1.yOt3nFB4cYCIrTaBTR1jpxG1OSbzvu2UC
+    newuser1:
+      email: manjunath.vinay2@gmail.com
+      name: Vinay Kumar
+      password: $2b$12$OZ.d0e0BH69GT0wFHdw7MO3rJj458U8dtTIYR.hxCsOQdjfs6VHSu
+    qwer1:
+      email: asdfsa@asdf.com
+      name: qwer
+      password: $2b$12$XVP12we29ex6vMRaBdlYvecJhktE6Mc4pQlrKtEKAgnLT/AI2xc2e
+    qwer1234:
+      email: asdfsa@asdf.com
+      name: qwer
+      password: $2b$12$8VcW4qDmmyZghcHj00iTeOaiwbC7al6lAGaPRQlVYDH0c0twWQfcK
+    rbriggs:
+      email: manjunath.vinay2@gmail.com
+      name: Rebecca Briggs
+      password: $2b$12$bCeVVC8U8StXOEX77pzhV.qZy.o0wGIXbj2CDP5lsh5VCsKpwJmS6
+    signuptest:
+      email: mmvinaykumar.mm@gmail.com
+      name: Sign Up
+      password: $2b$12$B7FfWDNB3nJi4FkL5NiF7.t3qL1/GHppDWz0Oj3Gko7nDNQgj6ECa
+    vkumar:
+      email: test
+      name: test1
+      password: $2b$12$Bp9T5VZmkEFmhIfNCt0vW.jx0m5vXFyDmBdQVJSq0nTMUmQsrtEXO
+    vkumar1:
+      email: mmvinaykumar.mm@gmail
+      name: Vinay
+      password: $2b$12$P6PtsonCplApMLX51oR38.2EaIfqzw3T1S.rjTuMCIg/rUCouIBpS
+    vkumar2:
+      email: mmvinaykumar.mm@gmail.com
+      name: VinayKumar
+      password: $2b$12$hS06Ox9oEu9x4.Ju/jr4mO.WYkYOn8T/kow48a0m21cgd8/YAyYLe
+    vkumar3:
+      email: mmvinaykumar.mm@gmail.com
+      name: VinayKumar
+      password: $2b$12$5JzZOXtgSXyWYNrkvUbUduPBb1VpRenOowQXw28XpYY5YVz7G8dim
+    vkumarmm:
+      email: mmvinaykumar.mm@gmail.com
+      name: Vinay Kumar
+      password: $2b$12$.6Lrwje5KqV8wm3KpVG0yOaEt92ywDp13HoFzrAoWYLCUemkNNF6y
+    yamltest:
+      email: yamltest@yamltest
+      name: yamltest
+      password: $2b$12$cSW/jlH8h4qH8clFbD5NMubgahS.makAap2ytgq2drHB90Q/08StC
+preauthorized:
+  emails:
+  - mmvinaykumar.mm@gmail.com
